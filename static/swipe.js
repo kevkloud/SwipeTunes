@@ -1,10 +1,11 @@
-
+// Create client for interfacing with Microsofts Mobile Services
 var client = new WindowsAzure.MobileServiceClient(
   "https://swipetunesserver.azure-mobile.net/",
   "KAfLYWfIFFndZengKOGsHiQsNxIKXL27"
 );
 
-var search_services() {
+// Called when a user searches an artist
+function search_services() {
   
   var search_query = document.getElementById("search_form").value;
   
