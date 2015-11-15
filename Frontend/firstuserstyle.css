@@ -1,7 +1,8 @@
-html {
-	background: url(../assets/img/First User's Experience/Page 1.png) no-repeat center center fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
-}}
+img {
+    max-width:100% ;
+    height: auto;
+    padding: 0;
+    border: none;
+    margin: 0;
+    
+}
