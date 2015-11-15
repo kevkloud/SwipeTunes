@@ -83,14 +83,16 @@ body {
   bottom: 15;
   width: 235;
   height: 235;
+  visibility: hidden;
 }
 
 #dislike {
   position: relative;
-  bottom: 1i9;
+  bottom: 19;
   left: 70;
   width: 77;
   height: 77;
+  visibility: hidden;
 }
 
 #like {
@@ -99,4 +101,12 @@ body {
   left: 120;
   width: 90;
   height: 90;
+  visibility: hidden;
+}
+
+#song_title, #artist, #album {
+  color: white;
+  font-family: Helvetica;
+  text-align: center;
+  font-style: bold;
 }
