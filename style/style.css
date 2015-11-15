@@ -1,0 +1,17 @@
+body {
+  background-color: #262721;
+  width: 375px;
+  margin: 0 auto;
+}
+
+div.swipe_view {
+  width: 375px;
+  margin: 0 auto;
+}
+
+div.cover_art {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto;
+}
+
