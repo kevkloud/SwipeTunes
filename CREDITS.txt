@@ -1,0 +1,5 @@
+All user experience and UI elements designed by Yoon (Kathleen) Namgung.
+
+Backend Spotify interface and front end developed by Kevin Lee.
+
+Additonal front end development by Yoon (Kathleen) Namgung.
