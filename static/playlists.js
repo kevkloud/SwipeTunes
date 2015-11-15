@@ -7,25 +7,24 @@ $(function() {
     console.log(accountsTable);
     // var item = { text: "Workout Jam" };
     // client.getTable("accounts").insert(item);
+        accountsTable
+          .read()
+          .done(function (results) {
+                // alert(JSON.stringify(results));
+                // debugger
+                // console.log(JSON.stringify(results));
+                var json = JSON.stringify(results);
+                var objs = JSON.parse(json);
 
-    function refreshAccounts() {
-        // var username = accountsTable.
-        // console.log(username)
-        // var query = accountsTable.where({
-        //   playlists: accounts.playlists
-        // });
-        accountsTable.select('text', 'playlists')
-          .read(
-             { success: function(results) {
-                 debugger
-                 if (results.length > 0) {
-                     return results;
-                 } else {
-                     console.log('no results returned');
-                 }
-               }
-             })
-     };
+                objs.forEach(function(obj) {
+                  // $('.playlists').append(obj.text)
+                  $('.links').append( $("<a href='playlist.html'>" + obj.text + "</a>"))
+
+                });
+                // $("#playlists").empty().append(obj.text)
+            }, function (err) {
+                alert("Error: " + err);
+            });
         // console.log(query);
     //     query.read().then(function(accounts) {
     //         var listItems = $.map(accounts, function(playlists) {
@@ -50,6 +49,4 @@ $(function() {
     //     textbox.val('').focus();
     //     evt.preventDefault();
     // });
-
-    refreshAccounts();
 });
