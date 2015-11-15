@@ -6,7 +6,7 @@ var client = new WindowsAzure.MobileServiceClient(
 
 // Called when a user searches an artist
 function search_services() {
-  
+
   // Get the value currently in the search form
   var query = document.getElementById("query").value;
 
@@ -15,7 +15,7 @@ function search_services() {
 
   var url = 'https://api.spotify.com/v1/search?type=track&limit=50&q=' + encoded_query;
 
-  var asdf = fetch(url).then(function(response) {
+  fetch(url).then(function(response) {
     return response.json();
   }).then(function(json) {
     var tracks = json.tracks;
@@ -24,6 +24,8 @@ function search_services() {
   }).then(function(tracks) {
     for (i=0; i < tracks.length; i++) {
       console.log(tracks[i].id);
+      var item = { songid: tracks[i].id };
+      client.getTable("playlist").insert(item);
     }
   });
 
