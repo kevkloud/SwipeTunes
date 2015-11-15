@@ -1,11 +1,41 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8">
-    <title>SwipeTunes</title>
+    <title>Music Tinder</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="../assets/css/main.css" />
   </head>
   <body>
-    <h2 class="playlistName">
+
+    <!-- Page Wrapper -->
+      <div id="page-wrapper">
+
+        <!-- Header -->
+          <header id="header">
+            <h1><a href="home.html"> SwipeTunes</a></h1>
+            <nav id="nav">
+              <ul>
+                <li class="special">
+                  <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                  <div id="menu">
+                    <ul>
+                      <li><a href="index.html">Playlists</a></li>
+                      <li><a href="artists.html">Artists</a></li>
+                      <li><a href="songs.html">Songs</a></li>
+                                            <li><a href="logout.html">Log out</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+            <hr size = 5 color = "white" >
+
+          </header>
+
+        <!-- Main -->
+
+<h2 class="playlistName">
     </h2>
     <div class="songs"></div>
     <div class="artists"></div>
@@ -13,5 +43,15 @@
     <script src='https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.9.1.min.js'></script>
     <script src="../static/playlist.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
-  </body>
+
+    <!-- Scripts -->
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+ 
+</body>
 </html>
+

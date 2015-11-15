@@ -22,7 +22,7 @@
 		display: block;
 	}
 
-	.container {<img align="middle">
+	.container {<img align="middle"
 }
 
 	#likeimg {
@@ -105,7 +105,8 @@
 	}
 
 	.row.uniform > * > :first-child {
-		margin-top: 0;
+		
+		-top: 0;
 	}
 
 	.row.uniform > * > :last-child {
