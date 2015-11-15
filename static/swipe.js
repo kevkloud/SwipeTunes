@@ -39,30 +39,14 @@ var like = document.getElementById("like");
 
 dislike.addEventListener("click", function(e) {
   // Add current song_ids[id_index] to dislike playlist
-  var item = {liked : false};
-  client.getTable("Playlist").update(item);
+  
   update_suggestion();
   }, false);
 
 like.addEventListener("click", function(e) {
-  var track_url = 'https://api.spotify.com/v1/tracks/' + song_ids[id_index];
+  // Add current song_ids[id_index] to like playlist
 
-  fetch(track_url).then(function(response) {
-
-    return response.json();
-  }).then(function(song)  {
-    var cover_art = document.getElementById("cover_art");
-    var song_title = document.getElementById("song_title");
-    var artist = document.getElementById("artist");
-    var album = document.getElementById("album");
-    console.log(song)
-    var item = { songids: song.id, songtitle: song.name};
-    client.getTable("newPlaylist").insert(item);
-  });
-
-
-    // Add current song_ids[id_index] to like playlist
-    update_suggestion();
+  update_suggestion();
   }, false);
 
 
@@ -91,6 +75,12 @@ function shuffle(array) {
 // Called when a user searches an artist
 function search_services() {
 
+  document.getElementById("dislike").style.visibility = "visible";
+  document.getElementById("like").style.visibility = "visible";
+  document.getElementById("cover_art").style.visibility = "visible";
+  document.getElementById("query").style.visibility = "hidden";
+  document.getElementById("search").style.visibility = "hidden";
+
   search_complete = false;
 
   song_ids.length = 0;
@@ -105,7 +95,7 @@ function search_services() {
 
   // Search song/artist on Spotify
   fetch(url).then(function(response) {
-
+    
     // Return JSON
     return response.json();
   }).then(function(json) {
@@ -115,7 +105,7 @@ function search_services() {
     var items = tracks.items;
     return items;
   }).then(function(tracks) {
-
+    
     for (i=0; i < tracks.length; i++) {
       var id = tracks[i].id;
       song_ids.push(id);
@@ -127,36 +117,36 @@ function search_services() {
     var artist_id = tracks[0].artists[0].id;
 
     var related_url = 'https://api.spotify.com/v1/artists/' + artist_id + '/related-artists';
-
+  
     // Search for related artists of the artist most relevant to searches
     fetch(related_url).then(function(response) {
       return response.json();
     }).then(function(object) {
       var artists = object.artists;
-
+    
       var artist_ids = new Array();
-
+ 
       for (i = 0; i < artists.length; i++) {
-        artist_ids.push(artists[i].id);
+        artist_ids.push(artists[i].id); 
       }
 
       var total = artist_ids.length;
       var count = 0;
-
-      // For each artist, gather their top 10 tracks and add them to the songs_id
+      
+      // For each artist, gather their top 10 tracks and add them to the songs_id    
       for (i = 0; i < artist_ids.length; i++) {
 
         var artist_url = 'https://api.spotify.com/v1/artists/' + artist_ids[i] + '/top-tracks?country=US';
-
+        
         fetch(artist_url).then(function(response) {
-          return response.json();
+          return response.json(); 
         }).then(function(json) {
           var tracks = json.tracks;
-
+          
           for (i = 0; i < tracks.length; i++) {
-            song_ids.push(tracks[i].id);
+            song_ids.push(tracks[i].id);        
           }
-
+        
           count++;
 
           // Once all keys have been collected in songs_id
@@ -165,40 +155,40 @@ function search_services() {
             search_complete = true;
             update_suggestion();
           }
-        });
+        }); 
       }
-    });
-  });
+    }); 
+  });  
 }
 
 function update_suggestion() {
-
+  
   var track_url = 'https://api.spotify.com/v1/tracks/' + song_ids[id_index];
 
   fetch(track_url).then(function(response) {
 
     return response.json();
   }).then(function(song)  {
-
+   
     var cover_art = document.getElementById("cover_art");
-    var song_title = document.getElementById("song_title");
-    var artist = document.getElementById("artist");
-    var album = document.getElementById("album");
+    var song_title = document.getElementById("song_title"); 
+    var artist = document.getElementById("artist"); 
+    var album = document.getElementById("album"); 
 
     cover_art.src = song.album.images[1].url;
-    song_title.textContent = song.name;
-    artist.textContent = song.artists[0].name;
-    album.textContent = song.album.name;
+    song_title.textContent = song.name; 
+    artist.textContent = song.artists[0].name; 
+    album.textContent = song.album.name; 
 
     soundManager.stopAll();
-
+ 
     song_preview = soundManager.createSound({
       url:  song.preview_url
-    });
+    });    
 
     song_preview.play();
-
+ 
   });
-
+  
   id_index++;
 }
