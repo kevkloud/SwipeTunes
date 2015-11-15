@@ -13,14 +13,20 @@ var search_complete = true;
 // Global variable for index into songs_ids
 var id_index = 0;
 
+// Sound
+var song_preview = soundManager.createSound({
+  url: ''
+  });
+
 var search_form = document.getElementById("query");
 
 var search_button = document.getElementById("search");
 
 search_form.addEventListener("keydown", function(e) {
-  if (e.keycode == 13) {
+  if (e.keyCode == 13) {
     e.preventDefault();
     search_services();
+    return false;
   }
   }, false);
 
@@ -45,10 +51,26 @@ like.addEventListener("click", function(e) {
 
 
 // Source: http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
-function shuffle(o){
-  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-  return o;
+function shuffle(array) {
+    var counter = array.length, temp, index;
+
+    // While there are elements in the array
+    while (counter > 0) {
+        // Pick a random index
+        index = Math.floor(Math.random() * counter);
+
+        // Decrease counter by 1
+        counter--;
+
+        // And swap the last element with it
+        temp = array[counter];
+        array[counter] = array[index];
+        array[index] = temp;
+    }
+
+    return array;
 }
+
 
 // Called when a user searches an artist
 function search_services() {
@@ -123,7 +145,7 @@ function search_services() {
 
           // Once all keys have been collected in songs_id
           if (count >= total) {
-            //shuffle(arr);
+            shuffle(song_ids);
             search_complete = true;
             update_suggestion();
           }
@@ -141,14 +163,7 @@ function update_suggestion() {
 
     return response.json();
   }).then(function(song)  {
-    
-    console.log(song);  
-
-    console.log(song.album.images[1].url);
-    console.log(song.name); 
-    console.log(song.artists[0].name); 
-    console.log(song.album.name); 
-
+   
     var cover_art = document.getElementById("cover_art");
     var song_title = document.getElementById("song_title"); 
     var artist = document.getElementById("artist"); 
@@ -158,8 +173,15 @@ function update_suggestion() {
     song_title.textContent = song.name; 
     artist.textContent = song.artists[0].name; 
     album.textContent = song.album.name; 
-  
-    console.log(document.getElementById("cover_art").src);
+
+    soundManager.stopAll();
+ 
+    song_preview = soundManager.createSound({
+      url:  song.preview_url
+    });    
+
+    song_preview.play();
+ 
   });
   
   id_index++;
