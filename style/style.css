@@ -4,24 +4,52 @@ body {
   margin: 0 auto;
 }
 
+@font-face {
+  font-family: "Mohave";
+  src: local("/fonts/Mohave.otf") format("opentype");
+}
+
 #nav_bar {
   background-color: #13130F;
   height: 48;
   width: 100%;
 }
 
+#hamburger {
+  position: relative;
+  right: 15px;
+  bottom: 10px;
+  width: 70;
+}
+
 #logo {
+  position: relative;
+  bottom: 70;
   color: #FFCD62;
   width: 375px;
   margin: 0 auto;
   text-align: center;
   vertical-align: middle;
   line-height: 48px;
-  font-family: "Mohave"
+  font-family: "Mohave";
+}
+
+#profile {
+  position: relative;
+  bottom: 128;
+  left: 315;
+  width: 70;
 }
 
 #nav_divider {
   background-color: #F9FAF5; 
   height: 2;
   width: 100%;
+}
+
+img.cover_art {
+  width: 250;
+  height: 250;
+  display: block;
+  margin: 0 auto;
 }
