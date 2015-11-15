@@ -17,6 +17,7 @@ $(function() {
         accountsTable.select('text', 'playlists')
           .read(
              { success: function(results) {
+                 debugger
                  if (results.length > 0) {
                      return results;
                  } else {
