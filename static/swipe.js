@@ -15,11 +15,19 @@ function search_services() {
 
   var url = 'https://api.spotify.com/v1/search?type=track&limit=50&q=' + encoded_query;
 
-  var promise1 = fetch(url).then(function(response) {
+  var asdf = fetch(url).then(function(response) {
     return response.json();
   }).then(function(json) {
     var tracks = json.tracks;
     var items = tracks.items;
     return items;
+  }).then(function(tracks) {
+    for (i=0; i < tracks.length; i++) {
+      console.log(tracks[i].id);
+    }
   });
+
+//  var related_url = 'https://api.spotify.com/v1/artists/' + + '/related-artists';
+
+
 }
