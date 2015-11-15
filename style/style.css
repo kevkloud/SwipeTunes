@@ -47,9 +47,51 @@ body {
   width: 100%;
 }
 
-img.cover_art {
+#query {
+  position: relative;
+  top: 28;
+  left: 26;
+  height: 40;
+  width: 320;
+  padding-left: 1cm;
+  background-color: #1F201B;
+  border-top-left-radius:1em;
+  border-top-right-radius:1em;
+  border-bottom-right-radius:1em;
+  border-bottom-left-radius:1em;
+  border-color: #13130F;
+  color: #FFFFFF;
+}
+
+#mag {
+  position: relative;
+  top: 40;
+  left: 100;
+  z-index: -1;
+}
+
+#search {
+  position: relative;
+  top: 100;
+  left: 120;
+}
+
+#cover_art {
+  position: relative;
+  left: 59;
   width: 250;
   height: 250;
-  display: block;
-  margin: 0 auto;
+}
+
+#dislike {
+  position: relative;
+  
+  width: 78;
+  height: 78;
+}
+
+#like {
+  position: relative;
+  width: 90;
+  height: 90;
 }
