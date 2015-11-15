@@ -4,6 +4,65 @@ var client = new WindowsAzure.MobileServiceClient(
   "KAfLYWfIFFndZengKOGsHiQsNxIKXL27"
 );
 
+// find template and compile it
+var templateSource = document.getElementById('results-template').innerHTML,
+    template = Handlebars.compile(templateSource),
+    resultsPlaceholder = document.getElementById('results'),
+    playingCssClass = 'playing',
+    audioObject = null;
+
+var fetchTracks = function (albumId, callback) {
+    $.ajax({
+        url: 'https://api.spotify.com/v1/albums/' + albumId,
+        success: function (response) {
+            callback(response);
+        }
+    });
+};
+
+var searchAlbums = function (query) {
+    $.ajax({
+        url: 'https://api.spotify.com/v1/search',
+        data: {
+            q: query,
+            type: 'album'
+        },
+        success: function (response) {
+            resultsPlaceholder.innerHTML = template(response);
+        }
+    });
+};
+
+results.addEventListener('click', function (e) {
+    var target = e.target;
+    if (target !== null && target.classList.contains('cover')) {
+        if (target.classList.contains(playingCssClass)) {
+            audioObject.pause();
+        } else {
+            if (audioObject) {
+                audioObject.pause();
+            }
+            fetchTracks(target.getAttribute('data-album-id'), function (data) {
+                audioObject = new Audio(data.tracks.items[0].preview_url);
+                audioObject.play();
+                target.classList.add(playingCssClass);
+                audioObject.addEventListener('ended', function () {
+                    target.classList.remove(playingCssClass);
+                });
+                audioObject.addEventListener('pause', function () {
+                    target.classList.remove(playingCssClass);
+                });
+            });
+        }
+    }
+});
+
+document.getElementById('search-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    searchAlbums(document.getElementById('query').value);
+}, false);
+
+/*
 // Called when a user searches an artist
 function search_services() {
   
@@ -11,47 +70,23 @@ function search_services() {
   var query = document.getElementById("search_form").value;
 
   // Replace spaces with %20 for URI search
-  var encoded_query = encodeURIComponent(query.trim());
+  //var encoded_query = encodeURIComponent(query.trim());
 
-  var url = 'https://api.spotify.com/v1/search?type=track&limit=50&q=' + encoded_query;
-  
-  $.ajax(url, {
-    dataType: 'json',
-    success: function(r) {
-      console.log('got track', r);
-      callback({
-        word: word,
-        tracks: r.tracks.items
-          .map(function(item) {
-            var ret = {
-              name: item.name,
-              artist: 'Unknown',
-              artist_uri: '',
-              album: item.album.name,
-              album_uri: item.album.uri,
-              cover_url: '',
-              uri: item.uri
-            }
-            if (item.artists.length > 0) {
-              ret.artist = item.artists[0].name;
-              ret.artist_uri = item.artists[0].uri;
-            }
-            if (item.album.images.length > 0) {
-              ret.cover_url = item.album.images[item.album.images.length - 1].url;
-            }
-            return ret;
-          })
-      });
+  //var url = 'https://api.spotify.com/v1/search?type=track&limit=50&q=' + encoded_query;
+
+  $.ajax({
+    url: 'https://api.spotify.com/v1/search',
+    data: {
+      q: query,
+      type: 'track'
     },
-    error: function(r) {
-      callback({
-        word: word,
-        tracks: []
-      });
+    success: function (response) {
+      resultsPlaceholder.innerHTML = templlate(response);
     }
-  }); 
-  
+  });
+ 
 }
+*/
 
 // var item = { text: "Awesome item" };
 // client.getTable("Item").insert(item);
