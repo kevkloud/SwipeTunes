@@ -1,6 +1,7 @@
 <html>
   <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script> 
   <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
+  <script src="static/soundmanager2.js"></script> 
   <head>
     <title>SwipeTunes</title>
     <meta charset="UTF-8">
@@ -9,7 +10,6 @@
   <body>
     <a href="templates/playlists.html">My Playlists</a>
     
-
     <form id="search-form">
       <input type="text" id="query" value="" placeholder="Song, Artist, Album, etc..."/>
       <br>
@@ -29,6 +29,16 @@
       <p id="artist"></p>
       <p id="album"></p>
     </div>
+
+    <script>
+      soundManager.setup({
+        // where to find flash audio SWFs, as needed
+        url: 'assets/swf',
+        onready: function() {
+          // SM2 is ready to play audio!
+      }
+    });
+    </script>
 
     <input type="button" id="dislike" value="Dislike"/>
     <input type="button" id="like" value="Like"/>
