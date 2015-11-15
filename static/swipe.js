@@ -10,6 +10,46 @@ var song_ids = new Array();
 // Global varible to keep track of whether a search is complete
 var search_complete = true;
 
+// Global variable for index into songs_ids
+var id_index = 0;
+
+var search_form = document.getElementById("query");
+
+var search_button = document.getElementById("search");
+
+search_form.addEventListener("keydown", function(e) {
+  if (e.keycode == 13) {
+    e.preventDefault();
+    search_services();
+  }
+  }, false);
+
+search_button.addEventListener("click", function(e) {
+  search_services();
+  }, false);
+
+var dislike = document.getElementById("dislike");
+var like = document.getElementById("like");
+
+dislike.addEventListener("click", function(e) {
+  // Add current song_ids[id_index] to dislike playlist
+  
+  update_suggestion();
+  }, false);
+
+like.addEventListener("click", function(e) {
+  // Add current song_ids[id_index] to like playlist
+
+  update_suggestion();
+  }, false);
+
+
+// Source: http://stackoverflow.com/questions/6274339/how-can-i-shuffle-an-array-in-javascript
+function shuffle(o){
+  for(var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+  return o;
+}
+
 // Called when a user searches an artist
 function search_services() {
 
@@ -64,7 +104,8 @@ function search_services() {
 
       var total = artist_ids.length;
       var count = 0;
-    
+      
+      // For each artist, gather their top 10 tracks and add them to the songs_id    
       for (i = 0; i < artist_ids.length; i++) {
 
         var artist_url = 'https://api.spotify.com/v1/artists/' + artist_ids[i] + '/top-tracks?country=US';
@@ -80,11 +121,46 @@ function search_services() {
         
           count++;
 
+          // Once all keys have been collected in songs_id
           if (count >= total) {
+            //shuffle(arr);
             search_complete = true;
+            update_suggestion();
           }
         }); 
       }
     }); 
   });  
+}
+
+function update_suggestion() {
+  
+  var track_url = 'https://api.spotify.com/v1/tracks/' + song_ids[id_index];
+
+  fetch(track_url).then(function(response) {
+
+    return response.json();
+  }).then(function(song)  {
+    
+    console.log(song);  
+
+    console.log(song.album.images[1].url);
+    console.log(song.name); 
+    console.log(song.artists[0].name); 
+    console.log(song.album.name); 
+
+    var cover_art = document.getElementById("cover_art");
+    var song_title = document.getElementById("song_title"); 
+    var artist = document.getElementById("artist"); 
+    var album = document.getElementById("album"); 
+
+    cover_art.src = song.album.images[1].url;
+    song_title.textContent = song.name; 
+    artist.textContent = song.artists[0].name; 
+    album.textContent = song.album.name; 
+  
+    console.log(document.getElementById("cover_art").src);
+  });
+  
+  id_index++;
 }
