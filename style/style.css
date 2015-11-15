@@ -1,7 +1,27 @@
 body {
-  background-color: #262721;
+  background-color: #13130F;
   width: 375px;
   margin: 0 auto;
 }
 
+#nav_bar {
+  background-color: #13130F;
+  height: 48;
+  width: 100%;
+}
 
+#logo {
+  color: #FFCD62;
+  width: 375px;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 48px;
+  font-family: "Mohave"
+}
+
+#nav_divider {
+  background-color: #F9FAF5; 
+  height: 2;
+  width: 100%;
+}
