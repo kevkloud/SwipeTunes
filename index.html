@@ -20,25 +20,20 @@
   <body ontouchmove="BlockMove(event);">
     <div id="nav_bar"> 
       <img id="hamburger" src="assets/img/UI/Frame 01.png"></img>
-      <div id="logo">SWIPETUNE</div>
+      <div id="logo">SWIPETUNES</div>
       <img id="profile" src="assets/img/UI/Frame 08.png"></img>
     </div>
     <div id="nav_divider"></div>
 
-    <a href="templates/playlists.html">My Playlists</a>
+    <!-- <a href="templates/playlists.html">My Playlists</a> -->
     
     <form id="search-form">
+      <div id="mag" src="assets/img/UI/Magnifying Glass.png"></div>
       <input type="text" id="query" value="" placeholder="Song, Artist, Album, etc..."/>
       <br>
       <input type="button" id="search" value="Search"/>
     </form>
     <div id="results"></div>
-
-    <script id="results-template" type="text/x-handlebars-template">
-      {{#each albums.items}}
-      <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
-      {{/each}}
-    </script>    
 
     <div id="swipe_view">
       <img id="cover_art" src=""></img>
@@ -57,8 +52,8 @@
     });
     </script>
 
-    <input type="button" id="dislike" value="Dislike"/>
-    <input type="button" id="like" value="Like"/>
+    <img src="assets/img/UI/buttons.png" id="dislike" value="Dislike"/>
+    <img src="assets/img/UI/Frame 05.png" id="like" value="Like"/>
 
     <script>
       // This is called with the results from from FB.getLoginStatus().
