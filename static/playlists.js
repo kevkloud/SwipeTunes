@@ -5,6 +5,7 @@ $(function() {
   );
     var accountsTable = client.getTable('accounts');
     console.log(accountsTable);
+    var playlistTable = client.getTable('playlist');
     // var item = { text: "Workout Jam" };
     // client.getTable("accounts").insert(item);
         accountsTable
@@ -25,8 +26,11 @@ $(function() {
             }, function (err) {
                 alert("Error: " + err);
             });
-      // $(document.body).on('click', '.item-delete', function () {
-      //     accountTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
+      // function getplaylistId(formElement) {
+      //     return $(formElement).closest('ul').attr('playlist-id');
+      // }
+      // $('.del').on('click', '.item-delete', function () {
+      //     playlistTable.del({ id: getplaylistId(this) })
       // });
         // console.log(query);
     //     query.read().then(function(accounts) {
