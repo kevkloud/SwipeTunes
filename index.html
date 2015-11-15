@@ -1,0 +1,36 @@
+<html>
+  <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
+  <script src="static/swipe.js"></script>
+  <script src="static/auth.js"></script>
+  <head>
+    <title>SwipeTunes</title>
+    <meta charset="UTF-8">
+  </head>
+  
+  <body>
+    <a href="templates/playlists.html">My Playlists</a>
+    
+    <form>
+      Search:
+      <input type="text" id="search_form" name="firstname" value="Artist or Song">
+      <br>
+      <input type="button" value = "Search" onclick="search_services()">
+    </form>
+
+    <script>
+      // This is called with the results from from FB.getLoginStatus().
+    </script>
+
+    <!--
+      Below we include the Login Button social plugin. This button uses
+      the JavaScript SDK to present a graphical Login button that triggers
+      the FB.login() function when clicked.
+    -->
+
+    <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"></fb:login-button>
+
+    <div id="status"></div>
+
+  </body>
+</html>
+
