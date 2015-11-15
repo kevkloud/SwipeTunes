@@ -1,8 +1,6 @@
 <html>
   <script type='text/javascript' src="http://code.jquery.com/jquery-1.10.1.min.js"></script> 
   <script src="http://ajax.aspnetcdn.com/ajax/mobileservices/MobileServices.Web-1.2.7.min.js"></script>
-  <script src="static/swipe.js"></script>
-  <script src="static/auth.js"></script>
   <head>
     <title>SwipeTunes</title>
     <meta charset="UTF-8">
@@ -15,7 +13,7 @@
     <form id="search-form">
       <input type="text" id="query" value="" placeholder="Song, Artist, Album, etc..."/>
       <br>
-      <input type="button" id="search" value="Search" onclick="search_services()"/>
+      <input type="button" id="search" value="Search"/>
     </form>
     <div id="results"></div>
 
@@ -24,6 +22,16 @@
       <div style="background-image:url({{images.0.url}})" data-album-id="{{id}}" class="cover"></div>
       {{/each}}
     </script>    
+
+    <div id="swipe_view">
+      <img id="cover_art" src="" style="width:300px;height:300px;"></img>
+      <p id="song_title"></p>
+      <p id="artist"></p>
+      <p id="album"></p>
+    </div>
+
+    <input type="button" id="dislike" value="Dislike"/>
+    <input type="button" id="like" value="Like"/>
 
     <script>
       // This is called with the results from from FB.getLoginStatus().
@@ -57,14 +65,15 @@
               <li><a href="#"   class="icon fa-envelope-o"><span class="label">Email</span></a></li>
             </ul>-->
 
-    <!-- Scripts -->
-      <script src="assets/js/jquery.min.js"></script>
-      <script src="assets/js/jquery.scrollex.min.js"></script>
-      <script src="assets/js/jquery.scrolly.min.js"></script>
-      <script src="assets/js/skel.min.js"></script>
-      <script src="assets/js/util.js"></script>
-      <script src="assets/js/main.js"></script>
- 
+  <!-- Scripts -->
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/skel.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>     
+  <script src="static/swipe.js"></script>
+  <script src="static/auth.js"></script>
 </body>
 </html>
 
