@@ -25,6 +25,9 @@ $(function() {
             }, function (err) {
                 alert("Error: " + err);
             });
+      // $(document.body).on('click', '.item-delete', function () {
+      //     accountTable.del({ id: getTodoItemId(this) }).then(refreshTodoItems, handleError);
+      // });
         // console.log(query);
     //     query.read().then(function(accounts) {
     //         var listItems = $.map(accounts, function(playlists) {
